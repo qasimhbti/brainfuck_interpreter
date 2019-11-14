@@ -5,10 +5,10 @@ export GO_TEST=go test
 all: build test clean
 
 build:
-	$(GO_BUILD) -v -i -o build/brainfuck_interpreter ./interpreter
+	$(GO_BUILD) -v -i -o build/brainfuck_interpreter ./machine
 
 test:
-	$(GO_TEST) -v  ./interpreter
+	$(GO_TEST) -v  ./machine
 	$(GO_TEST) -v  ./utils
 
 clean:

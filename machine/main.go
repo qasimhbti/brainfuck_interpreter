@@ -21,13 +21,24 @@ func main() {
 func run() error {
 	utils.InitLog()
 	utils.LogStart(brainfuckinterpreter.Version, "development")
+
+	// Add the Custom operation
+	var operation InsType
+	addCustomOperation([]byte("?"), operation)
+
+	// Read the file
 	fileName := os.Args[1]
 	code, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		return errors.WithMessage(err, "reading file")
 	}
 
-	m := NewMachine(string(code), os.Stdin, os.Stdout)
+	// Create set of instructions
+	compiler := NewCompiler(string(code))
+	instructions := compiler.Compile()
+
+	// Prepare and execute the BrainFuck Machine
+	m := NewMachine(instructions, os.Stdin, os.Stdout)
 	err = m.Execute()
 	if err != nil {
 		return errors.WithMessage(err, "Execute")

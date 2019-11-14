@@ -16,6 +16,6 @@ Execute:
 
 Navigate to brainfuck_interpreter/interpreter folder
 Run the following command
-``./interpreter ./hello_world.b``
+``./machine ./hello_world.b``
 
 ===> hellow_world.b is the input file passed as argument
